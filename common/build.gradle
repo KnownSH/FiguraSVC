@@ -3,7 +3,7 @@ architectury {
 }
 
 loom {
-    accessWidenerPath = file("src/main/resources/exampleplugin.accesswidener")
+    accessWidenerPath = file("src/main/resources/figurasvc.accesswidener")
 }
 
 
@@ -13,12 +13,13 @@ repositories {
 
 dependencies {
     // Libraries
-    compileOnly("com.github.FiguraMC.luaj:luaj-core:$luaj-figura")
-    compileOnly("com.github.FiguraMC.luaj:luaj-jse:$luaj-figura")
-    compileOnly("com.neovisionaries:nv-websocket-client:$nv_websocket")
+    implementation("com.github.FiguraMC.luaj:luaj-core:$luaj-figura")
+    implementation("com.github.FiguraMC.luaj:luaj-jse:$luaj-figura")
+    implementation("com.neovisionaries:nv-websocket-client:$websocket")
 
     // Figura common lib
-    modCompileOnly("org.figuramc:figura-common-intermediary:$figura_version")
+    modCompileOnly("org.figuramc:figura-common-intermediary:$figura_version+1.20.1")
+    implementation "de.maxhenkel.voicechat:voicechat-api:2.5.0"
 
     // We depend on fabric loader here to use the fabric @Environment annotations and get the mixin dependencies
     // Do NOT use other classes from fabric loader

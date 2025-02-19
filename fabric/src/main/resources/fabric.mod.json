@@ -4,6 +4,9 @@
   "version": "${version}",
   "name": "${display_name}",
   "description": "${description}",
+  "mixins": [
+    "figurasvc-common.mixins.json"
+  ],
   "authors": [
     "${authors}"
   ],
@@ -11,27 +14,21 @@
     "homepage": "https://fabricmc.net/",
     "sources": "https://github.com/FabricMC/fabric-example-mod"
   },
-  "license": "Insert License Here",
-  "icon": "assets/examplemod/icon.png",
+  "license": "LGPL-2.1",
+  "icon": "assets/figurasvc/icon.png",
   "environment": "*",
   "entrypoints": {
     "main": [
-      "org.figuramc.exampleplugin.fabric.ExamplePluginFabric"
+      "net.knownsh.figurasvc.fabric.FiguraSVCFabric"
     ],
     "figura_api": [
-      "org.figuramc.exampleplugin.ExamplePlugin"
+      "net.knownsh.figurasvc.FiguraSVC"
     ],
-    "figura_permissions": [
-      "org.figuramc.exampleplugin.ExamplePermissionsPlugin"
+    "figura_event": [
+      "net.knownsh.figurasvc.legacy.VoiceChatEventLegacy"
     ],
-    "figura_screen": [
-      "org.figuramc.exampleplugin.ExampleScreensPlugin"
-    ],
-    "figura_vanilla_part": [
-      "org.figuramc.exampleplugin.ExampleVanillaPartPlugin"
-    ],
-    "figura_example": [
-      "org.figuramc.exampleplugin.ExampleEventPlugin"
+    "voicechat": [
+      "net.knownsh.figurasvc.svc.SVCPlugin"
     ]
   },
   "depends": {
