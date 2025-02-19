@@ -1,6 +1,6 @@
 package net.knownsh.figurasvc.mixin;
 
-// based on what is used in Figura GoofyPlugin, which is licensed under the MIT license
+// based on what is used in Figura GoofyPlugin, which was licensed under the MIT license when this was written
 
 import net.knownsh.figurasvc.EventAccessor;
 import org.figuramc.figura.lua.LuaWhitelist;
