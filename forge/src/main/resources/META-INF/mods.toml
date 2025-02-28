@@ -1,0 +1,42 @@
+modLoader = "javafml"
+loaderVersion = "[45,)"
+#issueTrackerURL = ""
+license = "LGPL-2.1"
+
+[[mods]]
+modId = "${mod_id}"
+version = "${version}"
+displayName = "${display_name}"
+authors = "${authors}"
+description = '''
+${description}
+'''
+#logoFile = ""
+
+[[dependencies.${mod_id}]]
+modId = "forge"
+mandatory = true
+versionRange = "[45,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "minecraft"
+mandatory = true
+versionRange = "[1.20.,)"
+ordering = "NONE"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId = "figura"
+mandatory = true
+versionRange = "[${figura_version},)"
+ordering = "AFTER"
+side = "BOTH"
+
+[[dependencies.${mod_id}]]
+modId="voicechat"
+mandatory=true
+versionRange="[1.20.1-2.4.29,)"
+ordering="AFTER"
+side="BOTH"

@@ -11,8 +11,8 @@
     "${authors}"
   ],
   "contact": {
-    "homepage": "https://fabricmc.net/",
-    "sources": "https://github.com/FabricMC/fabric-example-mod"
+    "homepage": "https://derg.space/",
+    "sources": "https://github.com/KnownSH/FiguraSVC-v2"
   },
   "license": "LGPL-2.1",
   "icon": "assets/figurasvc/icon.png",
