@@ -37,8 +37,8 @@ dependencies {
     forgeRuntimeLibrary(modImplementation("com.github.FiguraMC.luaj:luaj-jse:$luaj-figura"))
     forgeRuntimeLibrary(modImplementation("com.neovisionaries:nv-websocket-client:$websocket"))
 
-    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.6"))
-    implementation("io.github.llamalad7:mixinextras-forge:0.3.6")
+    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.4.1"))
+    implementation("io.github.llamalad7:mixinextras-forge:0.4.1")
 
     forge "net.minecraftforge:forge:${rootProject.forge_version}"
 
@@ -61,6 +61,7 @@ Map<String, Object> properties = new HashMap<>()
     properties.put("display_name", rootProject.display_name)
     properties.put("description", rootProject.description)
     properties.put("authors", rootProject.authors)
+    properties.put("svc_version", rootProject.svc_version)
 
     properties.forEach((k, v) -> inputs.property(k, v.toString()))
     filesMatching("META-INF/mods.toml") {

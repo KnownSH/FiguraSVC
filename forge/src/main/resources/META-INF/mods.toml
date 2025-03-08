@@ -23,7 +23,7 @@ side = "BOTH"
 [[dependencies.${mod_id}]]
 modId = "minecraft"
 mandatory = true
-versionRange = "[1.20.,)"
+versionRange = "[${minecraft_version},)"
 ordering = "NONE"
 side = "BOTH"
 
@@ -37,6 +37,6 @@ side = "BOTH"
 [[dependencies.${mod_id}]]
 modId="voicechat"
 mandatory=true
-versionRange="[1.20.1-2.4.29,)"
+versionRange="[${minecraft_version}-${svc_version},)"
 ordering="AFTER"
 side="BOTH"

@@ -7,7 +7,6 @@ import de.maxhenkel.voicechat.api.events.ClientSoundEvent;
 import de.maxhenkel.voicechat.api.events.EventRegistration;
 import net.knownsh.figurasvc.EventAccessor;
 import net.knownsh.figurasvc.FiguraSVC;
-import net.knownsh.figurasvc.legacy.VoiceChatEventLegacy;
 import net.minecraft.client.Minecraft;
 import net.minecraft.client.multiplayer.ClientLevel;
 import net.minecraft.world.entity.player.Player;
@@ -15,6 +14,7 @@ import org.figuramc.figura.FiguraMod;
 import org.figuramc.figura.avatar.Avatar;
 import org.figuramc.figura.avatar.AvatarManager;
 import org.figuramc.figura.lua.api.event.LuaEvent;
+import org.luaj.vm2.LuaNumber;
 import org.luaj.vm2.LuaString;
 import org.luaj.vm2.LuaTable;
 import org.luaj.vm2.Varargs;
@@ -58,7 +58,7 @@ public class SVCPlugin implements VoicechatPlugin {
     }
 
     private void onLocalPlayerSpeak(ClientSoundEvent event) {
-        VoiceChatEventLegacy.onLocalPlayerSpeakLegacy(event); // Legacy code support (for older avatars)
+        onLocalPlayerSpeakLegacy(event); // Legacy code support (for older avatars)
 
         Avatar localPlayer = AvatarManager.getAvatarForPlayer(FiguraMod.getLocalPlayerUUID());
         if (localPlayer == null || localPlayer.luaRuntime == null) return;
@@ -74,5 +74,19 @@ public class SVCPlugin implements VoicechatPlugin {
                 event.setRawAudio(newPCMData);
             }
         } catch (Exception ignored) {}
+    }
+
+    public static void onLocalPlayerSpeakLegacy(ClientSoundEvent event) {
+        Avatar avatar = AvatarManager.getAvatarForPlayer(FiguraMod.getLocalPlayerUUID());
+        // legacy event handler
+        if (!event.getVoicechat().isMuted() && avatar != null && avatar.luaRuntime != null) {
+            LuaTable pCMTable = new LuaTable();
+            for (int i = 0; i < event.getRawAudio().length; i++) {
+                int mod = event.getRawAudio()[i];
+                pCMTable.set(i, LuaNumber.valueOf(mod));
+            }
+            LuaEvent legacyMicrophoneEvent = ((EventAccessor) avatar.luaRuntime.events).FiguraSVC$getMicrophoneEventLegacy();
+            avatar.run(legacyMicrophoneEvent, avatar.tick, pCMTable);
+        }
     }
 }

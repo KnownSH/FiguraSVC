@@ -24,9 +24,6 @@
     "figura_api": [
       "net.knownsh.figurasvc.FiguraSVC"
     ],
-    "figura_event": [
-      "net.knownsh.figurasvc.legacy.VoiceChatEventLegacy"
-    ],
     "voicechat": [
       "net.knownsh.figurasvc.svc.SVCPlugin"
     ]
