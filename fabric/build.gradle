@@ -29,8 +29,8 @@ dependencies {
     modApi "net.fabricmc.fabric-api:fabric-api:${rootProject.fabric_api_version}"
 
     // Figura fabric
-    modImplementation("org.figuramc:figura-fabric:$figura_version+1.20.1")
-    modRuntimeOnly "maven.modrinth:simple-voice-chat:fabric-1.20.1-2.4.29"
+    modImplementation("org.figuramc:figura-fabric:$figura_version+$minecraft_version")
+    modRuntimeOnly "maven.modrinth:simple-voice-chat:fabric-$minecraft_version-$svc_version"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionFabric")) { transitive false }

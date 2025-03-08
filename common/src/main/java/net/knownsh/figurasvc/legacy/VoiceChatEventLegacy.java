@@ -2,6 +2,7 @@ package net.knownsh.figurasvc.legacy;
 
 import com.mojang.datafixers.util.Pair;
 import de.maxhenkel.voicechat.api.events.ClientSoundEvent;
+import net.knownsh.figurasvc.EventAccessor;
 import net.knownsh.figurasvc.FiguraSVC;
 import org.figuramc.figura.FiguraMod;
 import org.figuramc.figura.avatar.Avatar;
@@ -16,6 +17,7 @@ import org.luaj.vm2.LuaTable;
 
 import java.util.Collection;
 import java.util.Collections;
+import java.util.List;
 
 /**
  * Legacy FiguraSVC event, maintained to keep old figuraSVC avatars functional on newer servers/clients
@@ -45,7 +47,8 @@ public class VoiceChatEventLegacy implements FiguraEvent {
                 int mod = event.getRawAudio()[i];
                 pCMTable.set(i, LuaNumber.valueOf(mod));
             }
-            avatar.run("SVC.MICROPHONE", avatar.tick, pCMTable);
+            LuaEvent legacyMicrophoneEvent = ((EventAccessor) avatar.luaRuntime.events).FiguraSVC$getMicrophoneEventLegacy();
+            avatar.run(legacyMicrophoneEvent, avatar.tick, pCMTable);
         }
     }
 }

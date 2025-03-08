@@ -1,22 +1,14 @@
 plugins {
-    id "com.github.johnrengelman.shadow" version "7.1.2"
+    id "com.github.johnrengelman.shadow" version "8.1.1"
 }
 
 architectury {
     platformSetupLoomIde()
-    forge()
+    neoForge()
 }
 
 loom {
     accessWidenerPath = project(":common").loom.accessWidenerPath
-
-    forge {
-        convertAccessWideners = true
-        extraAccessWideners.add loom.accessWidenerPath.get().asFile.name
-
-        mixinConfig "figurasvc-common.mixins.json"
-        //mixinConfig "exampleplugin.mixins.json"
-    }
 }
 
 configurations {
@@ -24,11 +16,12 @@ configurations {
     shadowCommon // Don't use shadow from the shadow plugin since it *excludes* files.
     compileClasspath.extendsFrom common
     runtimeClasspath.extendsFrom common
-    developmentForge.extendsFrom common
+    developmentNeoForge.extendsFrom common
 }
 
 repositories {
     maven { url 'https://jitpack.io' }
+    maven { url = "https://api.modrinth.com/maven" }
 }
 
 dependencies {
@@ -37,21 +30,18 @@ dependencies {
     forgeRuntimeLibrary(modImplementation("com.github.FiguraMC.luaj:luaj-jse:$luaj-figura"))
     forgeRuntimeLibrary(modImplementation("com.neovisionaries:nv-websocket-client:$websocket"))
 
-    compileOnly(annotationProcessor("io.github.llamalad7:mixinextras-common:0.3.6"))
-    implementation("io.github.llamalad7:mixinextras-forge:0.3.6")
+    neoForge "net.neoforged:neoforge:${rootProject.neoforge_version}"
 
-    forge "net.minecraftforge:forge:${rootProject.forge_version}"
-
-    // Figura forge
-    modImplementation("org.figuramc:figura-forge:$figura_version+$minecraft_version")
-    modRuntimeOnly "maven.modrinth:simple-voice-chat:forge-$minecraft_version-$svc_version"
+    //modImplementation("org.figuramc:figura-neoforge:$figura_version+$minecraft_version")
+    modImplementation("maven.modrinth:figura:0.1.5b+1.21.4-neoforge")
+    modRuntimeOnly "maven.modrinth:simple-voice-chat:neoforge-$minecraft_version-$svc_version"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }
     shadowCommon(project(path: ":common", configuration: "transformProductionForge")) { transitive = false }
 }
 
 processResources {
-Map<String, Object> properties = new HashMap<>()
+    Map<String, Object> properties = new HashMap<>()
 
     properties.put("version", project.version)
     properties.put("java_version", rootProject.java_version)
@@ -61,9 +51,10 @@ Map<String, Object> properties = new HashMap<>()
     properties.put("display_name", rootProject.display_name)
     properties.put("description", rootProject.description)
     properties.put("authors", rootProject.authors)
+    properties.put("svc_version", rootProject.svc_version)
 
     properties.forEach((k, v) -> inputs.property(k, v.toString()))
-    filesMatching("META-INF/mods.toml") {
+    filesMatching("META-INF/neoforge.mods.toml") {
         expand properties
     }
 }
