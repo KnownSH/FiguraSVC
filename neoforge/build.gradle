@@ -32,8 +32,7 @@ dependencies {
 
     neoForge "net.neoforged:neoforge:${rootProject.neoforge_version}"
 
-    //modImplementation("org.figuramc:figura-neoforge:$figura_version+$minecraft_version")
-    modImplementation("maven.modrinth:figura:0.1.5b+1.21.4-neoforge")
+    modImplementation("org.figuramc:figura-neoforge:$figura_version+$minecraft_version")
     modRuntimeOnly "maven.modrinth:simple-voice-chat:neoforge-$minecraft_version-$svc_version"
 
     common(project(path: ":common", configuration: "namedElements")) { transitive false }

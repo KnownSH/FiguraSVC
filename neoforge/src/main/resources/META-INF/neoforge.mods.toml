@@ -16,7 +16,7 @@ ${description}
 [[dependencies.${mod_id}]]
 modId = "neoforge"
 mandatory = true
-versionRange = "[21.3,)"
+versionRange = "[21.1,)"
 ordering = "NONE"
 side = "BOTH"
 
@@ -30,7 +30,7 @@ side = "BOTH"
 [[dependencies.${mod_id}]]
 modId = "figura"
 mandatory = true
-versionRange = "[${figura_version}b,)"
+versionRange = "[${figura_version},)"
 ordering = "AFTER"
 side = "BOTH"
 
