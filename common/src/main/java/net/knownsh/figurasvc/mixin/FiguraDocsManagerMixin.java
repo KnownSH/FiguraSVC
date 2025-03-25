@@ -1,6 +1,8 @@
 package net.knownsh.figurasvc.mixin;
 
-import net.knownsh.figurasvc.svc.FiguraSVCAPI;
+import net.knownsh.figurasvc.voice.VoiceAPI;
+import net.knownsh.figurasvc.voice.event.ClientReceiveSoundEventData;
+import net.knownsh.figurasvc.voice.event.ClientSoundEventData;
 import org.figuramc.figura.lua.docs.FiguraDocsManager;
 import org.spongepowered.asm.mixin.Final;
 import org.spongepowered.asm.mixin.Mixin;
@@ -12,11 +14,14 @@ import java.util.Map;
 
 @Mixin(value = FiguraDocsManager.class, remap = false)
 public class FiguraDocsManagerMixin {
-    @Shadow @Final private static Map<String, Collection<Class<?>>> GLOBAL_CHILDREN;
+    @Shadow @Final
+    private static Map<String, Collection<Class<?>>> GLOBAL_CHILDREN;
 
     static {
-        GLOBAL_CHILDREN.put("svc", List.of(
-                FiguraSVCAPI.class
+        GLOBAL_CHILDREN.put("voice", List.of(
+                VoiceAPI.class,
+                ClientSoundEventData.class,
+                ClientReceiveSoundEventData.class
         ));
     }
 }

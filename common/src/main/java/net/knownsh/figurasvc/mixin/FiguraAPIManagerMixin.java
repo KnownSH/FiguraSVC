@@ -1,6 +1,8 @@
 package net.knownsh.figurasvc.mixin;
 
-import net.knownsh.figurasvc.svc.FiguraSVCAPI;
+import net.knownsh.figurasvc.voice.VoiceAPI;
+import net.knownsh.figurasvc.voice.event.ClientReceiveSoundEventData;
+import net.knownsh.figurasvc.voice.event.ClientSoundEventData;
 import org.figuramc.figura.lua.FiguraAPIManager;
 import org.figuramc.figura.lua.FiguraLuaRuntime;
 import org.spongepowered.asm.mixin.Final;
@@ -22,7 +24,10 @@ public class FiguraAPIManagerMixin {
     public static Map<String, Function<FiguraLuaRuntime, Object>> API_GETTERS;
 
     static {
-        WHITELISTED_CLASSES.add(FiguraSVCAPI.class);
-        API_GETTERS.put("svc", FiguraSVCAPI::new);
+        WHITELISTED_CLASSES.add(VoiceAPI.class);
+        WHITELISTED_CLASSES.add(ClientSoundEventData.class);
+        WHITELISTED_CLASSES.add(ClientReceiveSoundEventData.class);
+
+        API_GETTERS.put("voice", VoiceAPI::new);
     }
 }

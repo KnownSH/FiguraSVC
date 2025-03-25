@@ -33,12 +33,19 @@ public class EventsAPIMixin implements EventAccessor {
     @LuaFieldDoc("events.microphone")
     public LuaEvent MICROPHONE;
 
+    @Unique
+    @LuaWhitelist
+    @LuaFieldDoc("svc.microphone")
+    public LuaEvent LEGACY_MICROPHONE;
+
     @Inject(method = "<init>", at = @At("RETURN"))
     private void FiguraSVC$customEvents(CallbackInfo ci) {
         HOST_MICROPHONE = new LuaEvent();
         MICROPHONE = new LuaEvent();
+        LEGACY_MICROPHONE = new LuaEvent();
         events.put("HOST_MICROPHONE", HOST_MICROPHONE);
         events.put("MICROPHONE", MICROPHONE);
+        events.put("SVC.MICROPHONE", LEGACY_MICROPHONE);
     }
 
     @Override
@@ -49,5 +56,10 @@ public class EventsAPIMixin implements EventAccessor {
     @Override
     public LuaEvent FiguraSVC$getMicrophoneEvent() {
         return MICROPHONE;
+    }
+
+    @Override
+    public LuaEvent FiguraSVC$getMicrophoneEventLegacy() {
+        return LEGACY_MICROPHONE;
     }
 }
