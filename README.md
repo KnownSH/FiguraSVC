@@ -1,3 +1,6 @@
+> [!NOTE]  
+> FiguraSVC has been archived as I do not plan on working on this broken codebase anymore. I plan on remaking this mod from scratch. You are free to fork and rewrite the mod if this doesn't happen.
+
 <h1 align="center"> FiguraSVC</h1>
 <p align="center">
   <img alt="fabric" height="56" src="https://cdn.jsdelivr.net/npm/@intergrav/devins-badges@3/assets/cozy/supported/fabric_vector.svg">
