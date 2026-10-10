@@ -1,5 +1,7 @@
 > [!NOTE]  
-> FiguraSVC has been archived as I do not plan on working on this broken codebase anymore. I plan on remaking this mod from scratch. You are free to fork and rewrite the mod if this doesn't happen.
+> I have been in the mood to work on Minecraft modding again, a better written FiguraSVC successor is **currently** in the works, with a much better API.
+>
+> ~~FiguraSVC has been archived as I do not plan on working on this broken codebase anymore. I plan on remaking this mod from scratch. You are free to fork and rewrite the mod if this doesn't happen.~~
 
 <h1 align="center"> FiguraSVC</h1>
 <p align="center">
